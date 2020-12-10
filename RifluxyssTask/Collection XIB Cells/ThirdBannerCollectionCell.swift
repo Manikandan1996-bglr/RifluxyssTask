@@ -9,6 +9,8 @@ import UIKit
 
 class ThirdBannerCollectionCell: UICollectionViewCell {
 
+    @IBOutlet weak var thirdBannerImg: UIImageView!
+    @IBOutlet weak var thirdBannerLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

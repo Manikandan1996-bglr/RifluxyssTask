@@ -8,10 +8,10 @@
 import UIKit
 
 class TopBannerImageCollectionCell: UICollectionViewCell {
-
+    @IBOutlet weak var topBannerImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
 }

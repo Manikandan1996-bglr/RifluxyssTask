@@ -7,9 +7,15 @@
 
 import UIKit
 
-class SecondBanner_TableCell: UITableViewCell {
+protocol seeAllBtnTapped {
+    func navigate()
+}
+class SecondBannerTableCell: UITableViewCell {
+    
     @IBOutlet weak var econdBannerCV: UICollectionView!
     @IBOutlet weak var secondBannerLabel: UILabel!
+    @IBOutlet weak var seeAllBtn: UIButton!
+    var delegate: seeAllBtnTapped?
     let secondContentArray = [
         ["title":"Top Infographic", "image": "bannerImg1"],
         ["title":"Most Papular Lens", "image": "bannerImg2"],
@@ -17,15 +23,21 @@ class SecondBanner_TableCell: UITableViewCell {
         ["title":"4th of July", "image": "bannerImg4"],
         ["title":"Monthly Payment", "image": "bannerImg1"],
         ["title":"Buyer Estimate", "image": "bannerImg2"]]
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         econdBannerCV.delegate = self
         econdBannerCV.dataSource = self
         econdBannerCV.register(UINib(nibName: "SecondBannerCollectionCell", bundle: nil), forCellWithReuseIdentifier: "SecondBannerCollectionCell")
     }
+    
+    @IBAction func seeAllBtnTapped(_ sender: Any) {
+        self.delegate?.navigate()
+    }
+    
 }
 
-extension SecondBanner_TableCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension SecondBannerTableCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return secondContentArray.count
     }
@@ -38,6 +50,6 @@ extension SecondBanner_TableCell: UICollectionViewDelegateFlowLayout, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-      return CGSize.init(width: frame.width, height: collectionView.frame.height)
+        return CGSize.init(width: frame.width/2, height: collectionView.frame.height)
     }
 }
